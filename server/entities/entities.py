@@ -8,10 +8,10 @@ from fastapi import FastAPI
 from entities.events.model import Event
 from entities.events.router import router as event_router
 from entities.domains.model import Domain
-from entities.paths.model import Path
 from entities.sessions.model import Session
+from entities.event_chains.model import EventChain
 
-models: List[peewee.Model] = [Domain, Path, Session, Event]
+models: List[peewee.Model] = [Domain, Session, EventChain, Event]
 
 def setup_models(peewee_db: PostgresqlDatabase):
     peewee_db.connect()

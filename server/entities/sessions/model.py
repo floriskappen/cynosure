@@ -1,6 +1,6 @@
 
 import peewee
+from playhouse.postgres_ext import DateTimeTZField
 
 class Session(peewee.Model):
-    start = peewee.DateTimeField()
-    end = peewee.DateTimeField()
+    created_at = DateTimeTZField()
