@@ -35,4 +35,3 @@ def close_expried():
         EventChain.is_closed==False,
         EventChain.last_ping < time_window
     ).execute()
-    print("Close expired done")
