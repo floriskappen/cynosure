@@ -8,6 +8,7 @@ import uvicorn
 from dotenv import load_dotenv
 
 from entities import entities
+from schedules import close_expired_event_chains
 
 load_dotenv()
 
@@ -27,9 +28,12 @@ peewee_db = peewee.PostgresqlDatabase(
     password=os.getenv("POSTGRES_PASSWORD"),
 )
 
+# Setup the entities
 entities.setup_models(peewee_db)
 entities.setup_routes(app)
 
+# Activate schedulers
+close_expired_event_chains.schedule()
 
 @app.get("/")
 def read_root():

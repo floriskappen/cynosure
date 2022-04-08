@@ -27,3 +27,12 @@ def create_event_chain(domain: Domain):
         session=get_or_create_session(),
         last_ping=datetime.datetime.now(pytz.timezone("Europe/Amsterdam")),
     )
+
+
+def close_expried():
+    time_window = datetime.datetime.now(pytz.timezone("Europe/Amsterdam")) - datetime.timedelta(seconds=60)
+    EventChain.update(is_closed=True).where(
+        EventChain.is_closed==False,
+        EventChain.last_ping < time_window
+    ).execute()
+    print("Close expired done")
