@@ -7,6 +7,7 @@ from fastapi import FastAPI
 
 from entities.events.model import Event
 from entities.events.router import router as event_router
+from entities.event_chains.router import router as event_chain_router
 from entities.domains.model import Domain
 from entities.sessions.model import Session
 from entities.event_chains.model import EventChain
@@ -25,4 +26,8 @@ def setup_routes(app: FastAPI):
     app.include_router(
         event_router,
         prefix="/events"
+    )
+    app.include_router(
+        event_chain_router,
+        prefix="/event_chains"
     )

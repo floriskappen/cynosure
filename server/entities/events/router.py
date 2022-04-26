@@ -40,3 +40,6 @@ async def create(event_create_request: EventCreateRequest):
         event_chain=event_chain,
         action=event_create_request.action
     )
+    return {
+        "event_chain": event_chain.id
+    }
